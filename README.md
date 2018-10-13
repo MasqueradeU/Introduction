@@ -1,6 +1,8 @@
 # introduction
 
-> my introduction
+> Introduction about me.
+
+This project is proceeded by #100DaysOfCode
 
 ## Build Setup
 
