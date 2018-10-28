@@ -20,7 +20,7 @@
       <p>
         <img src="../assets/link.svg" width="16" height="16">
         <a href="https://twitter.com/htmhtkz" target="_blank">
-          {{ ULR1 }}
+          {{ urlName }}
         </a>
       </p>
     </div>
@@ -28,16 +28,34 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'Profile',
-  data () {
-    return {
-      name: 'Hitomi Hatsukaze',
-      description: 'A web developer in tokyo prefecture. JS, Laravel and C++(programming competition)',
-      prefecture: 'Aichi',
-      currentPrefecture: 'Tokyo',
-      ULR1: 'H.Hkaze'
-    }
+
+  computed: {
+    ...mapState(['name', 'description', 'prefecture', 'currentPrefecture', 'urlName']),
+    ...mapState({
+      name (state) {
+        return state.name
+      },
+
+      description (state) {
+        return state.description
+      },
+
+      prefecture (state) {
+        return state.prefecture
+      },
+
+      currentPrefecture (state) {
+        return state.currentPrefecture
+      },
+
+      urlName (state) {
+        return state.urlName
+      }
+    })
   }
 }
 </script>
