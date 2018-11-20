@@ -1,23 +1,28 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import profileData from '../assets/profile.json'
 
 Vue.use(Vuex)
 
 const state = {
-  name: 'Hitomi Hatsukaze',
-  description: 'A web developer in tokyo prefecture. JS, Laravel and C++(programming competition)',
-  prefecture: 'Aichi',
-  currentPrefecture: 'Tokyo',
-  urlName: 'H.Hkaze'
+  profiles: {}
 }
 
 const mutations = {
-  UPDATE_NAME (state, newName) {
-    state.name = newName
+  UPDATE_NAME (state, profiles) {
+    state.profiles = profiles
+  }
+}
+
+const actions = {
+  fetchProfiles ({commit}) {
+    const profiles = profileData
+    commit('UPDATE_NAME', profiles)
   }
 }
 
 export default new Vuex.Store({
   state,
-  mutations
+  mutations,
+  actions
 })
