@@ -1,29 +1,27 @@
 <template>
   <div class="profile">
-    <div id="profile0">
-      <img src="../assets/profile_picture.png" class="profile-picture"/>
-      <h2>{{ name }}
-        <a href="https://github.com/MasqueradeU/introduction" target="_blank">
+      <img :src="profile.picturePath" class="profile-picture"/>
+      <h2>{{ profile.name }}
+        <a :href="profile.githubUrl" target="_blank">
           <img src="../assets/github.svg" width="16" height="16">
         </a>
-        <a href="https://twitter.com/htmhtkz" target="_blank">
+        <a :href="profile.twitterUrl" target="_blank">
           <img src="../assets/twitter.svg" width="16" height="16">
         </a>
       </h2>
-      <p>{{ description }}</p>
+      <p>{{ profile.description }}</p>
       <p>
-        <img src="../assets/globe.svg" width="16" height="16">{{ prefecture }}
+        <img src="../assets/globe.svg" width="16" height="16">{{ profile.prefecture }}
       </p>
       <p>
-        <img src="../assets/thumbtack.svg" width="16" height="16">{{ currentPrefecture }}
+        <img src="../assets/thumbtack.svg" width="16" height="16">{{ profile.currentPrefecture }}
       </p>
       <p>
         <img src="../assets/link.svg" width="16" height="16">
-        <a href="https://twitter.com/htmhtkz" target="_blank">
-          {{ urlName }}
+        <a :href="profile.freeUrl" target="_blank">
+          {{ profile.freeUrlName }}
         </a>
       </p>
-    </div>
   </div>
 </template>
 
@@ -32,47 +30,30 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'Profile',
+  props: {
+    profileId: Number
+  },
 
   computed: {
-    ...mapState(['name', 'description', 'prefecture', 'currentPrefecture', 'urlName']),
-    ...mapState({
-      name (state) {
-        return state.name
-      },
-
-      description (state) {
-        return state.description
-      },
-
-      prefecture (state) {
-        return state.prefecture
-      },
-
-      currentPrefecture (state) {
-        return state.currentPrefecture
-      },
-
-      urlName (state) {
-        return state.urlName
-      }
-    })
+    ...mapState(['profiles']),
+    profile () {
+      return this.profiles[this.profileId]
+    }
   }
 }
 </script>
 
 <style scoped>
 .profile {
-  max-width: 1060px;
-  display: flex;
-}
-
-#profile0{
   position: relative;
+  width: 100%;
   max-width: 25%;
   display: flex;
   flex-direction: column;
   border: 1px solid rgba(0,0,0,.125);
-  margin-left: 10px
+  margin-left: 10px;
+  margin-bottom: 10px;
+  flex: 0 0 25%;
 }
 
 .profile-picture {
@@ -89,6 +70,7 @@ p {
   display: block;
   font-size: 120%;
   margin: 10px;
+  margin-bottom: 10px;
 }
 
 a {
