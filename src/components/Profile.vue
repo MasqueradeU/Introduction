@@ -1,6 +1,6 @@
 <template>
   <div class="profile">
-      <img :src="profile.picturePath" class="profile-picture"/>
+      <img :src="img[profileId]" class="profile-picture"/>
       <h2>{{ profile.name }}
         <a :href="profile.githubUrl" target="_blank">
           <img src="../assets/github.svg" width="16" height="16">
@@ -32,6 +32,15 @@ export default {
   name: 'Profile',
   props: {
     profileId: Number
+  },
+
+  data () {
+    return {
+      img: {
+        1: require('../assets/profile_picture1.png'),
+        2: require('../assets/profile_picture2.png')
+      }
+    }
   },
 
   computed: {
